@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+* {
+    margin:0;
+    padding:0;
+}
+
+
+body {
+    background-image:url(../img/teclado.jpg);
+    background-size: 230px;
+    *background: -webkit-radial-gradient(#560e86, #0a0011);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2 {
+    font-family: Fredoka One;
+    text-align: center;
+    color:#00bef8;
+}
+
+.card{
+    border-radius: 1rem;
+    margin-bottom:70px;
+}
+
+.card-body {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 1rem;
+}
+
+
+.card-body:before{
+    content: '';
+    position:absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background:#fff;
+    z-index: -1;
+    border-radius: 1rem;
+}
+
+.card-body:after{
+    content: '';
+    position:absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background:#fff;
+    z-index: -2;
+    filter: blur(40px);
+    border-radius: 1rem;
+}
+
+.card-body:before, 
+.card-body:after
+{
+    border-radius: 1rem;
+    background: linear-gradient(220deg, #00bcd4, #460870, #00bcd4);
+}
+
+.form-text.text-muted ul{
+    margin-top:20px;
+    border: 1px solid #e9e8e8;
+    border-radius:  1rem;
+}
+
+.btn.btn-success{
+    font-family: Fredoka One;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #00bcd4;
+    border-color:transparent;
+}
+
+.btn.btn-success:hover{
+    background-color: #048899;
+}
+
+.si_regi a{
+    font-family: Fredoka One;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #6b6b6b;
+    border-color:transparent;
+    border-radius: 6px;
+    padding-top:6px;
+    text-decoration: none;
+    color:white;
+}
+
+.si_regi a:hover{
+    background-color: #4e4e4e;
+}
+
+.si_regi{
+    display:flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+label{
+    font-weight: bold;
+}

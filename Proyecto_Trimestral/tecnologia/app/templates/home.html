@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="container">
+    <span style="--l: '¡P';">¡P</span>
+    <span style="--l: 'R';">R</span>
+    <span style="--l: 'O';">O</span>
+    <span style="--l: 'D';">D</span>
+    <span style="--l: 'U';">U</span>
+    <span style="--l: 'C';">C</span>
+    <span style="--l: 'T';">T</span>
+    <span style="--l: 'O';">O</span>
+    <span style="--l: 'S!';">S!</span>
+</div>
+<div class="box">
+    <div class="productos">
+        {% for p in productos %}
+        <div class="producto">
+            <div class="contenedor_producto">
+                {% if p.imagen %}
+                <img id="img_pro" src="{{p.imagen.url}}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h2>${{p.precio | intcomma}}</h2>
+                    <h3>{{p.marca | capfirst}}</h3>
+                    <h4>{{p.nombre | title}}</h4>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

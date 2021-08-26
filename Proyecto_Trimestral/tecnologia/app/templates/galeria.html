@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+{% endblock %}
+
+{% block content %}
+<body id="body_galery">
+    <div class="container2">
+        <span style="--l: '¡P';">¡G</span>
+        <span style="--l: 'R';">A</span>
+        <span style="--l: 'O';">L</span>
+        <span style="--l: 'D';">E</span>
+        <span style="--l: 'U';">R</span>
+        <span style="--l: 'C';">Í</span>
+        <span style="--l: 'T';">A!</span>
+    </div>
+    <br><br>
+    <div class="galeria">
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda1.jpg' %}"><img src="{% static 'img/tienda/tienda1.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda2.png' %}"><img src="{% static 'img/tienda/tienda2.png' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda3.jpg' %}"><img src="{% static 'img/tienda/tienda3.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda4.jpg' %}"><img src="{% static 'img/tienda/tienda4.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda5.png' %}"><img src="{% static 'img/tienda/tienda5.png' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda6.jpg' %}"><img src="{% static 'img/tienda/tienda6.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda7.jpg' %}"><img src="{% static 'img/tienda/tienda7.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{% static 'img/tienda/tienda8.jpg' %}"><img src="{% static 'img/tienda/tienda8.jpg' %}"></a>     
+    </div>
+</body>
+{% endblock %}

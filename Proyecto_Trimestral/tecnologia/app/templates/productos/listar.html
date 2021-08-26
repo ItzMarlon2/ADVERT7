@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block js %}
+    <script>
+        function eliminarProducto(id) {
+            swal.fire({
+                "title":"¿Está seguro que desea eliminar este producto?",
+                "text":"Esta acción no se puede deshacer",
+                "icon":"question",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancelar",
+                "confirmButtonText":"Si, Eliminar",
+                "reverseButtons":true,
+                "confirmButtonColor":"#dc3545"
+            })
+            .then(function(result){
+                if(result.isConfirmed) {
+                    window.location.href ="/eliminar/"+id+"/"
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<br><br><br>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de productos</h2>
+        <hr>
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <th>Interfaz</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>¿Es nuevo?</th>
+                <th>opciones</th>
+            </tr>
+
+            {% for p in entity %}
+
+            <tr>
+                <td>
+                    {% if p.imagen %}
+                    <img id="img_pro" src="{{p.imagen.url}}" alt="imagen producto" width="50px" heigth="50px">
+                    {% endif %}
+                </td>
+                <td>{{ p.nombre | title}}</td>
+                <td>${{ p.precio | intcomma}}</td>
+                <td>{{ p.marca | title}}</td>
+                <td id="iconitos">
+                    {% if p.nuevo %}
+                    <img style="width: 25px;" src="../../static/img/cheque.png" alt="chulo">
+                    {% else %}
+                    <img style="width: 25px;" src="../../static/img/cancelar.png" alt="equis">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if perms.app.change_producto %}
+                    <a href="{% url 'modificar' p.id %}" class="btn btn-info btn-sm"><img style="width: 25px;" src="../static/img/modificar.png" alt="modificar"></a>
+                    {% endif %}
+                    {% if perms.app.delete_producto %}
+                    <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm"><img style="width: 25px;" src="../static/img/eliminar.png" alt="eliminar"></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div>
+            {% include 'paginador.html' %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
