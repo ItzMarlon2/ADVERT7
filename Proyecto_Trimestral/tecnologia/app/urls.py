@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import casa, contacto, galeria, agregar_producto, listar_productos, \
+from .views import casa, galeria, agregar_producto, listar_productos, \
     modificar_productos, eliminar_producto, registro, ProductoViewset, MarcaViewset, \
     error_facebook, pronto
 from rest_framework import routers
@@ -10,7 +10,6 @@ router.register('marca', MarcaViewset)
 
 urlpatterns = [
     path('', casa, name="home"),
-    path('contacto/', contacto, name="contacto"),
     path('galeria/', galeria, name="galeria"),
     path('agregar/', agregar_producto, name="agregar"),
     path('listar/', listar_productos, name="listar"),

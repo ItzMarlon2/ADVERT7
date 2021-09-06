@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import producto,marca
-from .forms import Contacto_form, productoForms, CustomUserCreationForm
+from .forms import productoForms, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -39,21 +39,6 @@ def casa(request):
     }
     return render (request, 'home.html', data)
 
-def contacto(request):
-    data ={
-        'form': Contacto_form()
-    }
-    if request.method == 'POST':
-        formulario = Contacto_form(data=request.POST)
-        if formulario.is_valid():
-            infForm=formulario.cleaned_data
-            send_mail(infForm["tipo_consulta"], infForm["mensaje"], infForm.get("correo", "marlonamorteguicampo@gmail.com"), ["periferics1317@gmail.com"],)
-            formulario.save()
-            messages.success(request, "El contacto se ha enviado!")
-        else:
-            data["form"] = formulario
-
-    return render (request, 'contacto.html', data)
 
 def galeria(request):
     return render (request, 'galeria.html')
