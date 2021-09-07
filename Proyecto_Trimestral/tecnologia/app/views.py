@@ -34,10 +34,21 @@ def error_facebook(request):
 
 def casa(request):
     productos = producto.objects.all()
+    categorias = marca.objects.all()
     data = {
-        'productos': productos
+        'productos': productos,
+        'categorias': categorias
     }
     return render (request, 'home.html', data)
+
+def cate(request, id):
+    productos = producto.objects.filter(marca=id)
+    categorias= marca.objects.all()
+    data ={
+        'productos': productos,
+        'categorias': categorias
+    }
+    return render (request, 'cate.html', data)
 
 
 def agregar_producto(request):

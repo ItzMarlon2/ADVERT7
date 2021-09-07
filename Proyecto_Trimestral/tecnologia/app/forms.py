@@ -17,7 +17,7 @@ class productoForms(forms.ModelForm):
 
     class Meta:
         model= producto
-        fields='__all__'
+        fields = ['nombre', 'username', 'precio', 'descripcion', 'nuevo', 'marca', 'imagen']
 
         widgets ={
             "fecha_fabricacion": DatePickerInput(format='%d/%m/%Y')

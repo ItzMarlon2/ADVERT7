@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block js %}
+    <script>
+        function eliminarProducto(id) {
+            swal.fire({
+                "title":"¿Está seguro que desea eliminar este producto?",
+                "text":"Esta acción no se puede deshacer",
+                "icon":"question",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancelar",
+                "confirmButtonText":"Si, Eliminar",
+                "reverseButtons":true,
+                "confirmButtonColor":"#dc3545"
+            })
+            .then(function(result){
+                if(result.isConfirmed) {
+                    window.location.href ="/eliminar/"+id+"/"
+                }
+            })
+        }
+    </script>
+{% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="container">
+    <span style="--l: '¡P';">¡P</span>
+    <span style="--l: 'R';">R</span>
+    <span style="--l: 'O';">O</span>
+    <span style="--l: 'D';">D</span>
+    <span style="--l: 'U';">U</span>
+    <span style="--l: 'C';">C</span>
+    <span style="--l: 'T';">T</span>
+    <span style="--l: 'O';">O</span>
+    <span style="--l: 'S!';">S!</span>
+</div>
+<div class="box">
+    <div class="productos">
+        {% for p in productos %}
+        <div class="producto">
+            <div class="contenedor_producto">
+                {% if p.imagen %}
+                <img id="img_pro" src="{{p.imagen.url}}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    {% if p.precio %}
+                    <h2>${{p.precio | intcomma}}</h2>
+                    {% endif %}
+                    <h3>{{p.marca | capfirst}}</h3>
+                    <h4>{{p.nombre | title}}</h4>
+                    <h4>{{p.descripcion}}</h4>
+                    <h6>Publicado por: @{{p.username}}</h6>
+                    {% if user.username == p.username %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'modificar' p.id %}" class="btn btn-info btn-sm"><img style="width: 25px;" src="../static/img/modificar.png" alt="modificar"></a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm"><img style="width: 25px;" src="../static/img/eliminar.png" alt="eliminar"></a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

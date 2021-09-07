@@ -25,6 +25,16 @@
         </div>
             <nav id="bar_nav">
                 <ul>
+                    
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'home'%}"> Todos </a>
+                    </button></li>
+                    {% for c in categorias %}
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'cate' c.id %}"> {{c.nombre}} </a>
+                    </button></li>
+                    {% endfor %}
+
                     <li><button type="button" class="btn btn-outline-info">
                         <a class="eti_menu" href="{% url 'home'%}"> Inicio </a>
                     </button></li>
