@@ -28,13 +28,7 @@
                     <li><button type="button" class="btn btn-outline-info">
                         <a class="eti_menu" href="{% url 'home'%}"> Inicio </a>
                     </button></li>
-                    <li><button type="button" class="btn btn-outline-info">
-                        <a class="eti_menu" href="{% url 'contacto' %}">Contacto</a>
-                    </button></li>
-                    <li><button type="button" class="btn btn-outline-info">
-                        <a class="eti_menu" href="{% url 'galeria' %}">Galería</a>
-                    </button></li>
-                    {% if perms.app.add_producto %}
+                    {% if user.is_authenticated %}
                     <li><button type="button" class="btn btn-outline-info">
                         <a class="eti_menu" href="{% url 'agregar' %}">Agregar</a>
                     </button></li>

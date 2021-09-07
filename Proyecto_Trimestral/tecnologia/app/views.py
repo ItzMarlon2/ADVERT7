@@ -40,10 +40,6 @@ def casa(request):
     return render (request, 'home.html', data)
 
 
-def galeria(request):
-    return render (request, 'galeria.html')
-
-@permission_required('app.add_producto')
 def agregar_producto(request):
 
     data ={
@@ -54,7 +50,7 @@ def agregar_producto(request):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "El producto se ha agregado Correctamente!!")
-            return redirect(to="listar")
+            return redirect(to="home")
         else:
             data["form"] = formulario
     return render(request, 'productos/agregar.html', data)
@@ -77,7 +73,7 @@ def listar_productos(request):
     }
     return render(request, 'productos/listar.html', data)
 
-@permission_required('add.change_producto')
+#@permission_required('add.change_producto')
 def modificar_productos(request, id):
 
     productos = get_object_or_404(producto, id=id)
@@ -91,17 +87,17 @@ def modificar_productos(request, id):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "El producto se ha modificado Correctamente!!")
-            return redirect(to="listar")
+            return redirect(to="home")
         data["Form"] =formulario
     return render(request, 'productos/modificar.html', data)
 
-@permission_required('add.delete_producto')
+#@permission_required('add.delete_producto')
 def eliminar_producto(request, id):
 
     productos = get_object_or_404(producto, id=id)
     productos.delete()
     messages.success(request, "El producto se ha eliminado Correctamente!!")
-    return redirect(to="listar")
+    return redirect(to="home")
 
 def registro(request):
     data={

@@ -14,15 +14,6 @@ class productoForms(forms.ModelForm):
     imagen = forms.ImageField(required=False, validators=[MaxSizeFileValidator(max_file_size=2)])
     precio = forms.IntegerField(required=False, min_value=1, max_value=3000000)
 
-    def clean_nombre(self):
-        nombre= self.cleaned_data["nombre"]
-        existe = producto.objects.filter(nombre__iexact=nombre).exists()
-
-        if existe:
-            raise ValidationError("Este nombre ya existe")
-        return nombre
-
-
 
     class Meta:
         model= producto
