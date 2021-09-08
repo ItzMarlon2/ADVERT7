@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import producto,marca
+from .models import producto,Categoria
 from .forms import productoForms, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -7,13 +7,13 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import viewsets
-from .serializers import ProductoSerializer, MarcaSerializer
+from .serializers import ProductoSerializer, CategoriaSerializer
 from django.core.mail import send_mail
 from django.conf import settings
 # Create your views here.
-class MarcaViewset(viewsets.ModelViewSet):
-    queryset = marca.objects.all()
-    serializer_class= MarcaSerializer
+class CategoriaViewset(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class= CategoriaSerializer
 
 class ProductoViewset(viewsets.ModelViewSet):
     queryset = producto.objects.all()
@@ -34,7 +34,7 @@ def error_facebook(request):
 
 def casa(request):
     productos = producto.objects.all()
-    categorias = marca.objects.all()
+    categorias =Categoria.objects.all()
     data = {
         'productos': productos,
         'categorias': categorias
@@ -42,8 +42,8 @@ def casa(request):
     return render (request, 'home.html', data)
 
 def cate(request, id):
-    productos = producto.objects.filter(marca=id)
-    categorias= marca.objects.all()
+    productos = producto.objects.filter(categoria=id)
+    categorias= Categoria.objects.all()
     data ={
         'productos': productos,
         'categorias': categorias

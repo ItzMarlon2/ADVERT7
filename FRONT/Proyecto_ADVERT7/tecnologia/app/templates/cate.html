@@ -52,6 +52,9 @@
                     <span>{{p.fecha_fabricacion}}</span>
                     <h2>{{p.nombre | title}}</h2>
                     <p>{{p.descripcion}}</p>
+                    {% if p.telefono %}
+                    <p>{{p.telefono}}</p>
+                    {% endif %}
                     {% if p.precio %}
                     <h2>${{p.precio | intcomma}}</h2>
                     {% endif %}

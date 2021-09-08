@@ -52,8 +52,11 @@
                     <span>{{p.fecha_fabricacion}}</span>
                     <h2>{{p.nombre | title}}</h2>
                     <p>{{p.descripcion}}</p>
+                    {% if p.telefono %}
+                    <p><i class="fab fa-whatsapp"></i>   {{p.telefono}}</p>
+                    {% endif %}
                     {% if p.precio %}
-                    <h2>${{p.precio | intcomma}}</h2>
+                    <h2>{{p.precio | intcomma}}</h2>
                     {% endif %}
                     <h3>{{p.marca | capfirst}}</h3>
                     <h6>Publicado por: @{{p.username}}</h6>

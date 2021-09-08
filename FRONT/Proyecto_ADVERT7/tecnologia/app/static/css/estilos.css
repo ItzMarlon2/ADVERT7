@@ -432,6 +432,7 @@ label{
 
 .row{
     max-width: 1349px;
+    justify-content: center;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd){
@@ -458,7 +459,6 @@ label{
     justify-content: center;
     background-color: rgba(245,243,238,255);
     margin-bottom: 30px;
-    width: 1347px;
 }
 
 /*--------------*/
@@ -747,6 +747,11 @@ label{
 
 
 /*MEDIA QUERIES*/
+@media (min-width: 768px){
+    .offset-md-3 {
+        margin-left: 10%;
+    }
+}
 
 
 /*Tablets*/

@@ -13,11 +13,12 @@ class productoForms(forms.ModelForm):
     username = forms.CharField(min_length=3, max_length=100)
     imagen = forms.ImageField(required=False, validators=[MaxSizeFileValidator(max_file_size=2)])
     precio = forms.IntegerField(required=False, min_value=1, max_value=3000000)
+    telefono = forms.CharField(required=False, min_length=7,max_length=10)
 
 
     class Meta:
         model= producto
-        fields = ['nombre', 'username', 'precio', 'descripcion', 'nuevo', 'marca', 'imagen']
+        fields = ['nombre', 'username', 'precio', 'descripcion', 'telefono', 'categoria', 'nuevo', 'imagen']
 
         widgets ={
             "fecha_fabricacion": DatePickerInput(format='%d/%m/%Y')

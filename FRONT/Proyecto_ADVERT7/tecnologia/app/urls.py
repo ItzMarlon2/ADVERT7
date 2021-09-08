@@ -5,7 +5,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('producto', ProductoViewset)
-router.register('marca', MarcaViewset)
+router.register('categoria', CategoriaViewset)
 
 urlpatterns = [
     path('', casa, name="home"),
