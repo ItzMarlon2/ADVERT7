@@ -1,0 +1,174 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periferics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/410cf35d38.js" crossorigin="anonymous"></script>
+    {% load static %}
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+    {% load pwa %}
+
+    {% progressive_web_app_meta %}
+</head>
+<body>
+    <header id="header">
+        <div class="contenedor_logo">
+            <a href="{% url 'home'%}"><img  class="logo"  src="{% static 'img/logo1.png' %}" alt="logo"></a>
+        </div>
+            <nav id="bar_nav">
+                <ul>
+                    
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'home'%}"> Inicio </a>
+                    </button></li>
+
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'home'%}"> Categoría </a>
+                    </button>
+                    <ul id="ul2">
+                        <li><button type="button" class="btn btn-outline-info">
+                            <a class="eti_menu" href="{% url 'home'%}"> Todos </a>
+                        </button>
+                        {% for c in categorias %}
+                        <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'cate' c.id %}"> {{c.nombre}} </a>
+                        </button></li>
+                        {% endfor %}
+                    </ul>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'agregar' %}">Agregar</a>
+                    </button></li>
+                    {% endif %}
+                    {% if perms.app.view_producto %}
+                    <li><button type="button" class="btn btn-outline-info">
+                        <a class="eti_menu" href="{% url 'listar' %}">Listado</a>
+                    </button></li>
+                    {% endif %}
+                </ul>
+            </nav>
+                <div id="registro">
+                    {% if user.is_authenticated %}
+                    <div id="contenedor_nombre">
+                        <a id="nombre_face" href="#">Usuario: {{user.username}}</a>
+                        &nbsp;
+                            {% for auth in backends.associated %}
+                                {% if auth.provider == 'facebook' %}
+                                    <img src="{{ auth.extra_data.picture.data.url }}" alt="" width="60" height="60">
+                                {% endif %}
+                            {% endfor %}
+                    </div>
+                    <br><hr>
+                    <div id="cerrar_Sesion">
+                            <a href="{% url 'logout' %}" class="btn-neon">
+                                <span id="span1"></span>
+                                <span id="span2"></span>
+                                <span id="span3"></span>
+                                <span id="span4"></span>
+                                Cerrar sesión
+                            </a>
+                    </div>
+                    {% else %}
+                        <a  href="{% url 'login' %}" class="btn-neon">
+                            <span id="span1"></span>
+                            <span id="span2"></span>
+                            <span id="span3"></span>
+                            <span id="span4"></span>
+                            Iniciar Sesión
+                        </a>
+                        <a  href="{% url 'registro' %}" class="btn-neon">
+                            <span id="span1"></span>
+                            <span id="span2"></span>
+                            <span id="span3"></span>
+                            <span id="span4"></span>
+                            Registrarse
+                        </a>
+                    {% endif%}
+                </div>
+    </header>
+
+    <div id="contenido">
+
+
+            {% block content %}
+            {% endblock %}
+
+
+    </div>
+
+
+    <footer>
+        <div class="container_footer">
+            <div class="box_footer">
+                
+                <div class="terms">
+                <p>
+                Aqui podrás navegar entre infinidades de anuncios de todo tipo,
+                aprovecha y utiliza esta página para dar a conocer todo lo que 
+                quieres mostrar, BIENVENIDO!!
+                </p>
+                </div>
+            </div>
+            <div class="box_footer">
+                <h3>Contacto</h3>
+                <a href="{% url 'pronto' %}">Tel +57 318-682-3863</a>
+                <a href="{% url 'pronto' %}">Email equipo7sena@gmail.com</a>
+                <a href="{% url 'pronto' %}">Acerca de</a>
+                <a href="{% url 'pronto' %}">Desarrollo secundario</a>
+            </div>
+
+            <div class="box_footer">
+                <h3>Redes Sociales</h3>
+                <a href="https://www.facebook.com/profile.php?id=100070111897802"><i class="fab fa-facebook"></i> Facebook </a>
+                <a href="https://twitter.com/periferics1"><i class="fab fa-twitter"></i> Twitter </a>
+                <a href="https://www.instagram.com/perifercis/"><i class="fab fa-instagram-square"></i> Instagram </a>
+                <p><i class="fas fa-envelope"></i> comunicateaqui@gmail.com</p>
+            </div>
+            <div class="box_footer">
+                <div class="logo2">
+                    <a href="admin/"><p>Admin</p><img src="../static/img/logo1-sin.png" alt="logito"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box_copyright">
+            <hr>
+            <p>Todos los derechos reservados &copy 2021
+                <b>Advert 7</b>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="js/menu.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% block mensajeria %}
+    {% if messages %}
+                {% for m in messages %}
+                    <script>
+                        swal.fire({
+                            "title": "Muy bien!!",
+                            "text": "{{m}}",
+                            "icon":"success"
+                        })
+                    </script>
+                {% endfor %}
+            {% endif %}
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>

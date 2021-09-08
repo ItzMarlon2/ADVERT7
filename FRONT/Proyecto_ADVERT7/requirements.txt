@@ -1,0 +1,9 @@
+django
+pillow
+django-admin-interface
+django-crispy-forms
+django-rest-framework
+social-auth-app-django
+django-pwa
+django-bootstrap4
+django-bootstrap-datepicker-plus
