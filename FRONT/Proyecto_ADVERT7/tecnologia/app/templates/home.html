@@ -58,7 +58,7 @@
                     {% if p.precio %}
                     <h2>{{p.precio | intcomma}}</h2>
                     {% endif %}
-                    <h3>{{p.marca | capfirst}}</h3>
+                    <h3>{{p.categoria | capfirst}}</h3>
                     <h6>Publicado por: @{{p.username}}</h6>
                     {% if user.username == p.username %}
                     {% if user.is_authenticated %}

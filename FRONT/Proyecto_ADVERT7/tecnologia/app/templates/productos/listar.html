@@ -34,7 +34,7 @@
                 <th>Interfaz</th>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Marca</th>
+                <th>Categorías</th>
                 <th>¿Es nuevo?</th>
                 <th>opciones</th>
             </tr>
@@ -53,7 +53,7 @@
                 {% else %}
                 <td>No disponible</td>
                 {% endif%}
-                <td>{{ p.marca | title}}</td>
+                <td>{{ p.categoria | title}}</td>
                 <td id="iconitos">
                     {% if p.nuevo %}
                     <img style="width: 25px;" src="../../static/img/cheque.png" alt="chulo">
